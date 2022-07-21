@@ -3,13 +3,14 @@ import { getRepository } from 'typeorm';
 import { ToDo } from './../models/ToDo.model';
 
 
-const createToDoList = async (toDos: ToDoInitialData[]) => {
+const createToDoList = async (toDoList: ToDoInitialData[]) => {
   const repository = getRepository(ToDo)
-  const createdTodoList = repository.create(toDos)
+  const createdTodoList = repository.create(toDoList)
 
   const todoList = await repository.save(createdTodoList)
 
   return todoList
+  // return toDoList
 }
 
 const findTaskById = async (id: string) => {
