@@ -17,6 +17,7 @@ export class user1658271529756 implements MigrationInterface {
                     name: 'email',
                     type: TABLE_TYPE.VARCHAR,
                     isNullable: false,
+                    isUnique: true
                 },
                 {
                     name: 'password',
