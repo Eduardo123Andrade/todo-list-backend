@@ -14,4 +14,6 @@ export interface UserData {
   name: string
   email: string
   password: string
+  createAt: string
+  updateAt: string
 }
