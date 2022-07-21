@@ -37,8 +37,9 @@ const findUserById = async (id: string) => {
 const updateUser = async (id: string, userData: UserWithoutIdAndPassword) => {
   const repository = getRepository(User)
   const findingUser = await findUserById(id)
+  const updateAt = Date.now()
 
-  Object.assign(findingUser, userData)
+  Object.assign(findingUser, { ...userData, updateAt })
 
   const updatedUser = await repository.save(findingUser)
 
