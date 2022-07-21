@@ -1,8 +1,8 @@
 import { UserView } from './../View/userView';
 import { Request, Response } from "express";
 import httpStatus from 'http-status';
-import { UserData, UserInitialData } from "src/interface";
-import { UserService } from "src/service";
+import { UserData, UserInitialData } from "../interface";
+import { UserService } from "../service";
 
 
 

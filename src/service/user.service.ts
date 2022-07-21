@@ -1,8 +1,8 @@
 import { UserData, UserWithoutIdAndPassword } from './../interface/user.interface';
 import { User } from './../models/User.model';
 import { getRepository } from "typeorm"
-import { UserInitialData } from 'src/interface';
-import { encoder } from 'src/utils';
+import { UserInitialData } from '../interface';
+import { encoder } from '../utils';
 
 
 const createUser = async (userData: UserInitialData) => {

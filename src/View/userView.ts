@@ -1,5 +1,5 @@
-import { UserData } from "src/interface"
-import { UserViewData } from "src/interface/userView.interface"
+import { UserData } from "../interface"
+import { UserViewData } from "../interface/userView.interface"
 
 
 const formatUser = (user: UserData): UserViewData => {
