@@ -54,10 +54,17 @@ const finishTask = async (id: string) => {
   return todoItem
 }
 
+const getTodoList = async (userId: string) => {
+  const repository = getRepository(ToDo)
+  const todoList = await repository.find({ where: { user: userId } })
+
+  return todoList
+}
 
 export const ToDoService = {
   createToDoList,
   editTask,
   deleteTask,
-  finishTask
+  finishTask,
+  getTodoList
 }
