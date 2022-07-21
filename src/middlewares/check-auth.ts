@@ -20,7 +20,7 @@ const verifyCallback = (
   if (err || info || !user || !authorization) {
     return reject(
       // new AuthError(httpStatus.UNAUTHORIZED, "Usuario não autenticado")
-      new Error()
+      new Error("Usuario não autenticado")
     );
   }
   const token = authorization.split(" ")[1];

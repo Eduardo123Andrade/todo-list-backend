@@ -25,7 +25,7 @@ const findTaskById = async (id: string) => {
 
 const editTask = async (id: string, toDo: ToDoData) => {
   const repository = getRepository(ToDo)
-  const updateAt = Date.now()
+  const updateAt = new Date()
   const findingTask = await findTaskById(id)
 
   Object.assign(findingTask, { ...toDo, updateAt })
@@ -45,7 +45,7 @@ const deleteTask = async (id: string) => {
 
 const finishTask = async (id: string) => {
   const repository = getRepository(ToDo)
-  const updateAt = Date.now()
+  const updateAt = new Date()
   const findingTask = await findTaskById(id)
 
   Object.assign(findingTask, { updateAt, status: 'DONE' })
