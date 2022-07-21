@@ -34,7 +34,7 @@ const saveToken = async (sessionData: Session): Promise<Session> => {
 
 const getSessionByTokenAndUserId = async (
   token: string,
-  userId: number
+  userId: string
 ): Promise<Session> => {
   const repository = getRepository(Session);
   const session = await repository.findOne({ where: { token, user: userId } });
