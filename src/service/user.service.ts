@@ -40,7 +40,7 @@ const findUserById = async (id: string) => {
 const updateUser = async (id: string, userData: UserWithoutIdAndPassword) => {
   const repository = getRepository(User)
   const findingUser = await findUserById(id)
-  const updateAt = Date.now()
+  const updateAt = new Date()
 
   Object.assign(findingUser, { ...userData, updateAt })
 
@@ -66,8 +66,9 @@ const deleteUser = async (id: string) => {
 }
 
 
-const updatePassword = async (newPassword: string, oldPassword: string, user?: UserData) => {
+const updatePassword = async (id: string, newPassword: string, oldPassword: string) => {
   const repository = getRepository(User)
+  const user = await findUserById(id)
 
   if (!user)
     // throw new NotFoundError(ErrorMessage.USER_NOT_FOUND)
@@ -81,8 +82,9 @@ const updatePassword = async (newPassword: string, oldPassword: string, user?: U
     throw new Error()
 
   const password = await encoder.codify(newPassword)
+  const updateAt = new Date()
 
-  Object.assign(user, { password })
+  Object.assign(user, { password, updateAt })
 
   const updatedUser = await repository.save(user)
 

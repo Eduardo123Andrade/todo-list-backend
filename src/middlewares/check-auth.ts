@@ -10,6 +10,13 @@ const verifyCallback = (
 ) => async (err: Error, user: UserData, info: any) => {
   const { authorization } = req.headers;
 
+  console.log({
+    err,
+    info, 
+    user,
+    authorization
+  })
+
   if (err || info || !user || !authorization) {
     return reject(
       // new AuthError(httpStatus.UNAUTHORIZED, "Usuario não autenticado")

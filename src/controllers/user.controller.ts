@@ -43,18 +43,19 @@ const listUsers = async (_request: Request, response: Response) => {
 }
 
 const updateUser = async (request: Request, response: Response) => {
-  const { id, name, email } = request.body
+  const { name, email } = request.body
+  const { id } = request.user as any
 
   const updatedUser = await UserService.updateUser(id, { email, name })
 
   const user = UserView.formatUser(updatedUser)
 
   return response.status(httpStatus.OK).json({ user })
-
 }
 
 const updatePassword = async (request: Request, response: Response) => {
-  const { id, oldPassword, newPassword } = request.body
+  const { oldPassword, newPassword } = request.body
+  const { id } = request.user as any
 
   const user = await UserService.updatePassword(id, newPassword, oldPassword)
 
