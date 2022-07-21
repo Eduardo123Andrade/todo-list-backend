@@ -3,7 +3,7 @@ import { BaseSchema } from "yup";
 
 export const validateData = (schema: BaseSchema) => async (
   req: Request,
-  res: Response,
+  _res: Response,
   next: Function
 ) => {
   const data = req.body;
