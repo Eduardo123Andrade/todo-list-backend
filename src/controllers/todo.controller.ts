@@ -12,11 +12,12 @@ const createToDoList = async (request: Request, response: Response) => {
 }
 
 const editTask = async (request: Request, response: Response) => {
-  const { id, ...rest } = request.body
+  const { id } = request.params
+  const { ...task } = request.body
 
-  const task = await ToDoService.editTask(id, rest)
+  const updatedTask = await ToDoService.editTask(id, task)
 
-  return response.status(httpStatus.OK).json({ task })
+  return response.status(httpStatus.OK).json({ task: updatedTask })
 }
 
 const deleteTask = async (request: Request, response: Response) => {
