@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
+import { ToDo } from "./ToDo.model"
 
 @Entity('User')
 export class User {
@@ -20,4 +21,8 @@ export class User {
   
   @Column({name: 'update_at', default: Date.now()})  
   updateAt: string
+
+
+  @OneToMany(() => ToDo, ToDo => ToDo.user)
+  todoList: ToDo[]
 }

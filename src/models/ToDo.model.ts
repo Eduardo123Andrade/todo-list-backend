@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm"
+import { User } from "./User.model"
 
 
 @Entity('To_do')
@@ -15,6 +16,12 @@ export class ToDo {
 
   @Column()
   status: string
+
+  @ManyToOne(() => User, user => user.todoList, {
+    cascade: ['insert', 'remove']
+  })
+  @JoinColumn({name: 'user_id'})
+  user: User
 
   @Column({ name: 'create_at', default: Date.now() })
   createAt: string
