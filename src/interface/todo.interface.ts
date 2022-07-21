@@ -11,6 +11,7 @@ export enum Status {
 
 export interface ToDoData {
   id: string
+  title: string
   description: string
   status: Status
   createAt: string
