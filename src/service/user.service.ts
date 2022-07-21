@@ -1,4 +1,4 @@
-import { UserWithoutIdAndPassword } from './../interface/user.interface';
+import { UserData, UserWithoutIdAndPassword } from './../interface/user.interface';
 import { User } from './../models/User.model';
 import { getRepository } from "typeorm"
 import { UserInitialData } from 'src/interface';
@@ -62,7 +62,7 @@ const deleteUser = async (id: string) => {
 }
 
 
-const updatePassword = async (newPassword: string, oldPassword: string, user?: UserData,) => {
+const updatePassword = async (newPassword: string, oldPassword: string, user?: UserData) => {
   const repository = getRepository(User)
 
   if (!user)
@@ -87,9 +87,10 @@ const updatePassword = async (newPassword: string, oldPassword: string, user?: U
 
 export const UserService = {
   createUser,
+  findUserByEmail,
   findUserById,
   updateUser,
   listUsers,
   deleteUser,
-  updatePassword
+  updatePassword,
 }
