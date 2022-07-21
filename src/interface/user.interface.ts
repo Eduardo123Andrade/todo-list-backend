@@ -1,4 +1,5 @@
-export interface UserInitialData  {
+import { SessionData } from './session.interface';
+export interface UserInitialData {
   name: string
   email: string
   password: string
@@ -16,4 +17,5 @@ export interface UserData {
   password: string
   createAt: string
   updateAt: string
+  session: SessionData
 }

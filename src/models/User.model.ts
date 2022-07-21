@@ -1,4 +1,5 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm"
+import { Session } from "./Session.model"
 import { ToDo } from "./ToDo.model"
 
 @Entity('User')
@@ -25,4 +26,9 @@ export class User {
 
   @OneToMany(() => ToDo, ToDo => ToDo.user)
   todoList: ToDo[]
+
+  @OneToOne(() => Session, session => session.user, {
+    eager: true
+  })
+  session: Session
 }

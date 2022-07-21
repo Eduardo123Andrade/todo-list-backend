@@ -12,6 +12,7 @@ const dbPort = Number(String(process.env.DB_PORT || '0'));
 const jwtSecret = String(process.env.JWT_SECRET);
 const jwtAccessExpirationMinutes = String(process.env.JWT_ACCESS_EXPIRATION_MINUTES);
 const accessServerToken = String(process.env.ACCESS_SERVER_TOKEN);
+
 const nodeEnv = process.env.NODE_ENV
 
 export const dbConfig = {
