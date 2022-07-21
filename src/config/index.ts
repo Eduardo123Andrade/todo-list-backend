@@ -1,6 +1,7 @@
-import ormConfig from './orm.config';
 import { corsConfig } from './cors.config';
 import { dbConfig, environmentKeys } from './env.config';
+import ormConfig from './orm.config';
+import { jwtStrategy } from './passport.config';
 import { swaggerConfig } from './swagger.config';
 
 
@@ -9,6 +10,7 @@ export {
     corsConfig,
     dbConfig,
     environmentKeys,
-    ormConfig
+    ormConfig,
+    jwtStrategy
 };
 

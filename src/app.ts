@@ -1,11 +1,12 @@
+import Cors from "cors";
 import express from "express";
 import "express-async-errors";
-import createConnection from "./database/connection";
-import { router } from "./routes/index";
-import Cors from "cors";
-import { errorHandler } from "./errors/handler";
+import Passport from "passport";
+import { environmentKeys, jwtStrategy } from './config';
 import { corsConfig } from "./config/cors.config";
-import { environmentKeys } from "./config";
+import createConnection from "./database/connection";
+import { errorHandler } from "./errors/handler";
+import { router } from "./routes/index";
 
 createConnection()
     .then(() => {
@@ -19,6 +20,9 @@ const app = express();
 app.use(express.json());
 
 app.use(Cors(corsConfig));
+
+app.use(Passport.initialize())
+Passport.use('jwt', jwtStrategy)
 
 app.use(router);
 app.use(errorHandler);
