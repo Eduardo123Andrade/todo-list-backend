@@ -7,7 +7,9 @@ export const validateData = (schema: BaseSchema) => async (
   next: Function
 ) => {
   const data = req.body;
-  await schema
-    .validate(data, { abortEarly: false })
+  const body = await schema
+    .validate(data, { abortEarly: false, stripUnknown: true })
+
+  Object.assign(req, { body })
   next();
 };

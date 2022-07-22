@@ -49,7 +49,7 @@ const finishTask = async (request: Request, response: Response) => {
 const getTodoList = async (request: Request, response: Response) => {
 
   const { id: userId } = request.user as UserData
-  
+
   const todoList = await ToDoService.getTodoList(userId)
 
   return response.status(httpStatus.OK).json(todoList)
