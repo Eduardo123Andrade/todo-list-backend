@@ -1,0 +1,29 @@
+tags:
+  name: Auth
+  description: Documentation about User endpoint
+
+
+paths:
+  /auth/login:
+    post:
+      tags: [Auth]
+      summary: Authenticate User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginData' 
+      responses:
+        200:
+          description: Authenticated user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        404:
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserNotFoundMessage'

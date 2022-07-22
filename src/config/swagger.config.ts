@@ -1,5 +1,7 @@
 import swaggerJSDoc from "swagger-jsdoc";
 
+const ROOT_PATH = "./src/docs/**"
+
 export const options = {
     definition: {
         openapi: '3.0.1',
@@ -20,7 +22,11 @@ export const options = {
             ],
         }
     },
-    apis: ['./src/doc/**/*.swagger.ts', './src/doc/*.component.yaml']
+    apis: [
+        `${ROOT_PATH}/*.router.yaml`,
+        `${ROOT_PATH}/*.component.yaml`,
+        `${ROOT_PATH}/*.definitions.yaml`
+    ]
 }
 
 export const swaggerConfig = swaggerJSDoc(options);

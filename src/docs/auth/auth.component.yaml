@@ -1,0 +1,105 @@
+components:
+  schemas:
+
+    UserNotFoundMessage:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          description: Error message
+      example:
+        message: User not found
+
+    LoginData:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          description: Users email
+        password:
+          type: string
+          description: User's password
+      example:
+        email: test@test.com
+        password: test123
+
+    UserData:
+      type: object
+      required:
+        - id
+        - name
+        - email
+        - createAt
+        - updateAt
+      properties:
+        id:
+          type: string
+          description: Users uuid
+        name:
+          type: string
+          description: User name
+        email:
+          type: string
+          description: User email
+        createAt:
+          type: string
+          description: Data as toISOString
+        updateAt:
+          type: string
+          description: Data as toISOString
+      example:
+        id: "00000000-0000-0000-0000-000000000000"
+        name: "Arya Stark"
+        email: test@test.com
+        createAt: "2022-07-21T21:13:52.000Z"
+        updateAt: "2022-07-21T21:13:52.000Z"
+
+    AccessTokenData:
+      type: object
+      required:
+        - token
+        - expires
+      properties:
+        token:
+          type: string
+          description: User access token
+        expires:
+          type: string
+          description: Token expiration time
+      example:
+        token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmZTY5ODk1Ni1mMGEzLTQ3MmEtOTk4YS1kZDlhMzNkNGEzOTciLCJleHAiOjE2NTg1NjI4MjAuNTA3LCJ0eXBlIjoiQUNDRVNTIiwiaWF0IjoxNjU4NTMwNDIwfQ.WVvuSinW98jyu4mFWhMweIX2fxPrM7PIzzJtxIX6E6c
+        expires: "2022-07-23T07:53:40.507Z"
+
+    TokenData:
+      type: object
+      required:
+        - access
+      properties:
+        access:
+          type: object
+          description: Access token properties
+      example:
+        access:
+          $ref: "#/components/schemas/AccessTokenData/example"
+
+    LoginResponse:
+      type: object
+      required:
+        - user
+        - token
+      properties:
+        user:
+          type: object
+          description: User data
+          example:
+            $ref: "#/components/schemas/UserData/example"
+        token:
+          type: object
+          description: User access token
+          example:
+            $ref: "#/components/schemas/TokenData/example"
