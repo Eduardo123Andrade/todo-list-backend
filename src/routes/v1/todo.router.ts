@@ -10,7 +10,7 @@ todoRouter.post('/create-todo-list', validateData(validateCreateToDoList), ToDoC
 
 todoRouter.delete('/delete-task/:id', ToDoController.deleteTask)
 
-todoRouter.put('/edit-task/:id', validateData(validateEditTask), ToDoController.editTask) //put validation
+todoRouter.put('/edit-task/:id', validateData(validateEditTask), ToDoController.editTask) 
 
 todoRouter.put('/finish-task/:id', ToDoController.finishTask)
 
