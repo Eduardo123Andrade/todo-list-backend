@@ -14,7 +14,9 @@ const formatInitialData = (request: Request): UserInitialData => {
 const createUser = async (request: Request, response: Response) => {
   const userData = formatInitialData(request)
 
-  const user = await UserService.createUser(userData)
+  const createdUser = await UserService.createUser(userData)
+
+  const user = UserView.formatUser(createdUser)
 
   return response.status(httpStatus.CREATED).json({ user })
 }

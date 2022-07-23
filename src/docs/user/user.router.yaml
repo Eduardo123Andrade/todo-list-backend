@@ -1,0 +1,28 @@
+tags:
+  name: User
+  description: Documentation about User endpoint
+
+paths:
+  /user/create-user:
+    post:
+      tags: [User]
+      summary: Create User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserData'
+      responses:
+        201:
+          description: Created user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatedUserResponse'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserAlreadyExists'

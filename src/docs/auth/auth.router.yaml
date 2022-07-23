@@ -1,6 +1,6 @@
 tags:
   name: Auth
-  description: Documentation about User endpoint
+  description: Documentation about Auth endpoint
 
 
 paths:

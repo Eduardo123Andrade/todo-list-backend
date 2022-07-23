@@ -1,0 +1,65 @@
+components:
+  schemas:
+
+    CreateUserData:
+      type: object
+      required:
+        - name
+        - email
+        - password
+      properties:
+        name:
+          type: string
+          description: user name
+        email:
+          type: string
+          description: user email
+        password:
+          type: string
+          description: user password
+      example:
+        name: "Arya Stark"
+        email: test@test.com
+        password: test123
+
+    CreatedUserResponse:
+      type: object
+      required:
+        - id
+        - name
+        - email
+        - createAt
+        - updateAt
+      properties:
+        id:
+          type: string
+          description: Users uuid
+        name:
+          type: string
+          description: User name
+        email:
+          type: string
+          description: User email
+        createAt:
+          type: string
+          description: Data as toISOString
+        updateAt:
+          type: string
+          description: Data as toISOString
+      example:
+        id: "00000000-0000-0000-0000-000000000000"
+        name: "Arya Stark"
+        email: test@test.com
+        createAt: "2022-07-21T21:13:52.000Z"
+        updateAt: "2022-07-21T21:13:52.000Z"
+
+    UserAlreadyExists:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          description: Error message
+      example:
+        message: User already exists
