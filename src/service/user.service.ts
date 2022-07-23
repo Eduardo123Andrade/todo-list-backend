@@ -15,6 +15,7 @@ const createUser = async (userData: UserInitialData) => {
 
   const user = await repository.save(userCreated)
     .catch(() => {
+      throw new CustomError(ErrorData.UserAlreadyExists.status, ErrorData.UserAlreadyExists.message);
     })
 
   return user
@@ -39,7 +40,10 @@ const findUserById = async (id: string) => {
   const user = await repository.findOne({ where: { id } })
 
   if (!user)
-    throw new Error()
+    throw new CustomError(
+      ErrorData.UserNotFoundError.status,
+      ErrorData.UserNotFoundError.message
+    )
 
   return user
 }
@@ -67,9 +71,10 @@ const listUsers = async () => {
 const deleteUser = async (id: string) => {
   const user = await findUserById(id);
 
-  await getRepository(User).remove(user);
+  const deleted = await getRepository(User).remove(user)
+    .catch(() => false)
 
-  return true;
+  return deleted;
 }
 
 
@@ -77,16 +82,14 @@ const updatePassword = async (id: string, newPassword: string, oldPassword: stri
   const repository = getRepository(User)
   const user = await findUserById(id)
 
-  if (!user)
-    // throw new NotFoundError(ErrorMessage.USER_NOT_FOUND)
-    throw new Error()
-
   const isRightPassword =
     await encoder.verifyPassword(oldPassword, user.password)
 
   if (!isRightPassword)
-    // throw new InvalidPasswordError()
-    throw new Error()
+    throw new CustomError(
+      ErrorData.InvalidPassword.status,
+      ErrorData.InvalidPassword.message,
+    )
 
   const password = await encoder.codify(newPassword)
   const updateAt = new Date()
