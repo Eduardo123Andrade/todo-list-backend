@@ -52,6 +52,39 @@ components:
         email: test@test.com
         createAt: "2022-07-21T21:13:52.000Z"
         updateAt: "2022-07-21T21:13:52.000Z"
+    
+    UpdateUserData:
+      type: object
+      required:
+        - name
+        - email
+      properties:
+        name:
+          type: string
+          description: User name
+        email:
+          type: string
+          description: User email
+      example:
+        name: "Arya Stark"
+        email: test@test.com
+    
+    UpdatePasswordData:
+      type: object
+      required:
+        - oldPassword
+        - newPassword
+      properties:
+        oldPassword:
+          type: string
+          description: Current update password
+        newPassword:
+          type: string
+          description: New user password
+      example:
+        oldPassword: test123
+        newPassword: test123123
+
 
     UserAlreadyExists:
       type: object
@@ -63,3 +96,36 @@ components:
           description: Error message
       example:
         message: User already exists
+
+    UserNotFoundMessage:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          description: Error message
+      example:
+        message: User not found
+
+    UpdatedUserData: 
+      type: object
+      required:
+        - isUpdated
+      properties:
+        isUpdated:
+          type: boolean
+          description: Updates status
+      example:
+        isUpdated: true
+
+    InvalidPasswordMessage:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          description: Error message
+      example:
+        message: Invalid password

@@ -26,3 +26,59 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserAlreadyExists'
+  
+  /user/update-user:
+    put:
+      tags: [User]
+      summary: Update user
+      requestBody: 
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserData'
+      responses:
+        200:
+          description: Updated user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdatedUserData'
+        404:
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserNotFoundMessage'
+
+  /user/update-password:
+    put:
+      tags: [User]
+      summary: Updates user password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePasswordData'
+      responses:
+        200:
+          description: Password updates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdatedUserData'
+        400:
+         description: Invalid password
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/InvalidPasswordMessage'
+        404:
+         description: User not found
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/UserNotFoundMessage'
+
+
