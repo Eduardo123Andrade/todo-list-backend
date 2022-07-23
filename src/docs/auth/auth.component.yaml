@@ -1,6 +1,17 @@
 components:
   schemas:
 
+    UserAccessDeniedMessage:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          description: Error message
+      example:
+        message: Access Denied
+
     UserNotFoundMessage:
       type: object
       required:

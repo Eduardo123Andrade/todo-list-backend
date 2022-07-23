@@ -21,6 +21,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoginResponse'
+        403:
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserAccessDeniedMessage'
         404:
           description: User not found
           content:
