@@ -2,6 +2,7 @@ import { ErrorRequestHandler } from "express";
 import httpStatus from "http-status";
 import { QueryFailedError } from "typeorm";
 import { ValidationError } from "yup";
+import { CustomError } from "./CustomError";
 
 interface ValidationErrors {
   [key: string]: string[];
@@ -27,6 +28,12 @@ export const errorHandler: ErrorRequestHandler = (
     return response.status(httpStatus.BAD_REQUEST).json({
       message: error.message,
     });
+  }
+
+  if (error instanceof CustomError) {
+    return response.status(error.status).json({
+      message: error.message
+    })
   }
 
   console.error(error);
