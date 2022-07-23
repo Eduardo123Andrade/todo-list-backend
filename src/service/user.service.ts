@@ -1,8 +1,10 @@
-import { UserData, UserWithoutIdAndPassword } from './../interface/user.interface';
-import { User } from './../models/User.model';
-import { getRepository } from "typeorm"
+import { getRepository } from "typeorm";
+import { CustomError } from '../errors';
 import { UserInitialData } from '../interface';
 import { encoder } from '../utils';
+import { UserWithoutIdAndPassword } from './../interface/user.interface';
+import { User } from './../models/User.model';
+import { ErrorData } from './../utils/';
 
 
 const createUser = async (userData: UserInitialData) => {
@@ -12,6 +14,8 @@ const createUser = async (userData: UserInitialData) => {
   const userCreated = repository.create({ ...userData, password })
 
   const user = await repository.save(userCreated)
+    .catch(() => {
+    })
 
   return user
 }
@@ -22,7 +26,10 @@ const findUserByEmail = async (email: string) => {
   const user = await repository.findOne({ where: { email } })
 
   if (!user)
-    throw new Error('user not found')
+    throw new CustomError(
+      ErrorData.UserNotFoundError.status,
+      ErrorData.UserNotFoundError.message
+    )
 
   return user
 }

@@ -1,5 +1,6 @@
-import { UserData } from 'src/interface';
-import { encoder } from '../utils';
+import { CustomError } from '../errors';
+import { UserData } from '../interface';
+import { encoder, ErrorData } from '../utils';
 import { UserService } from './user.service';
 
 export const login = async (email: string, password: string): Promise<UserData> => {
@@ -7,7 +8,7 @@ export const login = async (email: string, password: string): Promise<UserData> 
 
   const result = await encoder.verifyPassword(password, user.password);
   if (!result)
-    throw new Error()
+    throw new CustomError(ErrorData.AccessDenied.status, ErrorData.AccessDenied.message)
 
   return user;
 };
