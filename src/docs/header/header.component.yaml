@@ -1,0 +1,22 @@
+components:
+  schemas:
+
+    HeaderData:
+      - name: Authorization
+        in: header
+        description: User session token
+        required: true
+        type: object
+        schema:
+          $ref: '#/components/schemas/AuthorizationData'
+
+
+    AuthorizationData:
+      type: object
+      required:
+        - Authorization
+      properties:
+        Authorization:
+          type: object
+      example:
+        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmZTY5ODk1Ni1mMGEzLTQ3MmEtOTk4YS1kZDlhMzNkNGEzOTciLCJleHAiOjE2NTg0NjcwODcuMjUyLCJ0eXBlIjoiQUNDRVNTIiwiaWF0IjoxNjU4NDM0Njg3fQ.h4N0pcGFufkrMHvSReN9FiNQXn3WhodQTLyHVVT8Ya0
