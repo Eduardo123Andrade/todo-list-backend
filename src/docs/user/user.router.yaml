@@ -31,6 +31,14 @@ paths:
     put:
       tags: [User]
       summary: Update user
+      parameters:
+        - name: Authorization
+          in: header
+          description: User session token
+          required: true
+          type: object
+          schema:
+            $ref: '#/components/schemas/AuthorizationData'
       requestBody: 
         required: true
         content:
@@ -55,6 +63,14 @@ paths:
     put:
       tags: [User]
       summary: Updates user password
+      parameters:
+        - name: Authorization
+          in: header
+          description: User session token
+          required: true
+          type: object
+          schema:
+            $ref: '#/components/schemas/AuthorizationData'
       requestBody:
         required: true
         content:
@@ -80,5 +96,3 @@ paths:
            application/json:
              schema:
                $ref: '#/components/schemas/UserNotFoundMessage'
-
-
